@@ -4,5 +4,4 @@
 *.iml
 *.crb
 .idea/
-/artifacts/
 *.exe
