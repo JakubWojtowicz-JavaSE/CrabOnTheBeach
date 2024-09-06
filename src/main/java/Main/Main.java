@@ -29,6 +29,8 @@ public class Main {
         game.requestFocus();
         game.startGameThread();
 
+        window.setIconImage(game.getIcon());
+
         window.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {

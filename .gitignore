@@ -4,4 +4,5 @@
 *.iml
 *.crb
 .idea/
-*.zip
+/out/artifacts/CrabOnTheBeach/CrabOnTheBeach-1.0.0.3.exe
+*.exe

@@ -50,14 +50,13 @@ public class Game extends JPanel implements Runnable {
 
     private void initClasses() {
         data = LoadSave.LoadData();
+        random = new Random();
 
         eSpawner = new EntitySpawner(this);
         collisionCh = new CollisionChecker(this);
         listeners = new Listeners(this);
         audioPlayer = new AudioPlayer(this);
         ui = new UI(this);
-
-        random = new Random();
 
         player = new Player(this);
     }
@@ -77,12 +76,16 @@ public class Game extends JPanel implements Runnable {
         LoadSave.SaveData(data);
     }
 
+    public Image getIcon() {
+        return LoadSave.GetSpriteAtlas("icon/icon.png");
+    }
+
     public void changeGameState(GameStates newState) {
         gameState = newState;
         if (gameState == GameStates.options || gameState == GameStates.pause)
             ui.updateOptionsButtonsVar();
         else if (gameState == GameStates.deathScreen)   // in this case i can use 'else'
-            audioPlayer.playEffect(AudioPlayer.GAME_OVER);
+            audioPlayer.gameOver();
     }
     @Override
     public void run() {

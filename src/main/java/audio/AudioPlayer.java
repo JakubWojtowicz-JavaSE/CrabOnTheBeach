@@ -9,6 +9,8 @@ import java.util.Random;
 public class AudioPlayer {
 
     public static int MUSIC_01 = 0;
+    public static int MUSIC_02 = 1;
+    public static int MUSIC_03 = 2;
 
     public static int GAME_OVER = 0;
 
@@ -16,7 +18,6 @@ public class AudioPlayer {
     private Clip[] songs, effects;
     private int currentSongId;
     private float volume = 0.5f;
-    private Random rand = new Random();
 
     public AudioPlayer(Game game) {
         this.game = game;
@@ -24,11 +25,11 @@ public class AudioPlayer {
 
         loadSongs();
         loadEffects();
-        playSong(MUSIC_01);
+        playSong(game.random.nextInt(3)+0);
     }
 
     private void loadSongs() {
-        String[] names = {"Beach_house"};
+        String[] names = {"beach_house", "sea_theme_1", "sea_theme_2"};
         songs = new Clip[names.length];
         for (int i = 0; i < songs.length; i++) {
             songs[i] = getCLip(names[i]);
@@ -71,6 +72,10 @@ public class AudioPlayer {
             songs[currentSongId].stop();
     }
 
+    public void gameOver() {
+        playEffect(GAME_OVER);// I add this method, when was 2 effects
+    }
+
     public void setLevelSong(int lvlIndex) {
 //        if ((lvlIndex & 2) == 0)
 //            playSong(LEVEL_1);
@@ -85,7 +90,7 @@ public class AudioPlayer {
 
     public void playAttackSound() {
         int start = 4;
-        start += rand.nextInt(3);
+        start += game.random.nextInt(3);
         playEffect(start);
     }
 
@@ -101,6 +106,15 @@ public class AudioPlayer {
         updateSongVolume();
         songs[currentSongId].setMicrosecondPosition(0);
         songs[currentSongId].loop(Clip.LOOP_CONTINUOUSLY);
+    }
+
+    public void nextSong() {
+        stopSong();
+
+        currentSongId++;
+        if (currentSongId >= songs.length)
+            currentSongId = 0;
+        playSong(currentSongId);
     }
 
     public void setSongMute(boolean isMute) {

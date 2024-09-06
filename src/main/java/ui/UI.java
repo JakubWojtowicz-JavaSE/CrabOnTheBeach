@@ -11,6 +11,7 @@ import ui.menu.QuitButton;
 import ui.navigate.HomeButton;
 import ui.navigate.RestartButton;
 import ui.navigate.ResumeButton;
+import ui.options.NextMusicButton;
 import ui.options.SoundButton;
 import ui.options.VolumeSlider;
 import ui.shop.*;
@@ -113,7 +114,8 @@ public class UI {
         buttons[OPTIONS_STATE][0] = new SoundButton(game, menuX + (int) (119f*Game.SCALE), menuY + (int) (72f*Game.SCALE), Type.music);
         buttons[OPTIONS_STATE][1] = new SoundButton(game, menuX + (int) (119f*Game.SCALE), menuY + (int) (105f*Game.SCALE), Type.sfx);
         buttons[OPTIONS_STATE][2] = new VolumeSlider(game, menuX + (int) (23f*Game.SCALE), (int) (228f*Game.SCALE));
-        buttons[OPTIONS_STATE][3] = new HomeButton(game, menuX + (int) (75f*Game.SCALE), menuY + (int) (200f*Game.SCALE));
+        buttons[OPTIONS_STATE][3] = new NextMusicButton(game, menuX + (int) (29f*Game.SCALE), menuY + (int) (200f*Game.SCALE));
+        buttons[OPTIONS_STATE][4] = new HomeButton(game, menuX + (int) (75f*Game.SCALE), menuY + (int) (200f*Game.SCALE));
 
         buttons[SHOP_STATE][0] = skins.get(0);
         buttons[SHOP_STATE][1] = skins.get(1);

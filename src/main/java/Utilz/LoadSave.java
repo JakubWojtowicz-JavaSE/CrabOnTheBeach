@@ -21,6 +21,7 @@ public class LoadSave {
     public static final String PAUSE_MENU = "ui/pause_menu.png";
     public static final String DEATH_SCREEN = "ui/death_screen.png";
     public static final String RESUME_RESTART_HOME_B = "ui/buttons/urm_buttons.png";
+    public static final String NEXT_MUSIC_BUTTON = "ui/buttons/next_music_button.png";
     public static final String CRABBY_SPRITES = "entitySprites/crabby_sprite.png";
     public static final String BALL_SPRITE = "entitySprites/ball.png";
     public static final String POTION_SPRITE = "entitySprites/potions_sprites.png";
