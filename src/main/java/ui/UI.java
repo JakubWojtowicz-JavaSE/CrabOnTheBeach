@@ -94,7 +94,6 @@ public class UI {
         if (game.data.unlockSkins != null) {
             for (int i : game.data.unlockSkins) {
                 skins.get(i).unlockSkin();
-                System.out.println(i);
             }
         }
     }

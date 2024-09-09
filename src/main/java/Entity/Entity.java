@@ -11,8 +11,7 @@ public abstract class Entity {
     protected Game game;
     protected Direction dir;
     protected String name;
-    protected float speed, maxSpeed;
-    protected int health, maxHealth;
+    protected int health, maxHealth, speed, maxSpeed;
     protected PositionData posData;
     protected BufferedImage imgs[][];
     protected int collLeftSpace, collRightSpace, collTopSpace, collBottomSpace;
@@ -30,7 +29,7 @@ public abstract class Entity {
 
     protected boolean isAttacking;
 
-    public Entity(Game game, Type eType, int xPos, int yPos, int width, int height, float speed, int health, int state) {
+    public Entity(Game game, Type eType, int xPos, int yPos, int width, int height, int speed, int health, int state) {
         this.game = game;
         this.entityType = eType;
         this.speed = (int) (speed * Game.SCALE);
@@ -151,11 +150,11 @@ public abstract class Entity {
         return speed;
     }
 
-    public float getMaxSpeed() {
+    public int getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(float maxSpeed) {
+    public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 

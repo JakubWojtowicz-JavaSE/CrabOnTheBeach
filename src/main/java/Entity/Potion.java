@@ -10,7 +10,7 @@ import static Utilz.Constants.PotionDetails.*;
 
 public class Potion extends Entity {
 
-    public Potion(Game game, Type eType, int xPos, int yPos, float speed) {
+    public Potion(Game game, Type eType, int xPos, int yPos, int speed) {
         super(game, eType, xPos, yPos, POTION_WIDTH, POTION_HEIGHT, speed, 1, RUNNING);
         name = "Potion";
         dir = Direction.fall;

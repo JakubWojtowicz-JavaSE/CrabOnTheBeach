@@ -53,11 +53,10 @@ public class EntitySpawner {
             genCounter = 0;
 
             if (times >= maxTimes) {
-                System.out.println("++++++");
                 game.player.score++;
                 game.player.heal(2);
                 maxTimes--;
-                genSpace -= 1.5f;
+                genSpace -= 1;
                 enemySpeed++;
                 times = 0;
             }
@@ -69,11 +68,11 @@ public class EntitySpawner {
         if (oGenCounter >= oGenSpace) {
             int i = game.random.nextInt(100);
             if (i <= 25)
-                objects.add(new Potion(game, Type.potion_g, game.random.nextInt(Game.WINDOW_WIDTH-Constants.PotionDetails.POTION_WIDTH), defYPos, 2.6f));
+                objects.add(new Potion(game, Type.potion_g, game.random.nextInt(Game.WINDOW_WIDTH-Constants.PotionDetails.POTION_WIDTH), defYPos, 2));
             else if (i > 25 && i <= 65)
-                objects.add(new Money(game, game.random.nextInt(Game.WINDOW_WIDTH-Constants.PotionDetails.POTION_WIDTH), defYPos, 2.5f));
+                objects.add(new Money(game, game.random.nextInt(Game.WINDOW_WIDTH-Constants.PotionDetails.POTION_WIDTH), defYPos, 2));
             else
-                objects.add(new Potion(game, Type.potion_b, game.random.nextInt(Game.WINDOW_WIDTH-Constants.PotionDetails.POTION_WIDTH), defYPos, 2.5f));
+                objects.add(new Potion(game, Type.potion_b, game.random.nextInt(Game.WINDOW_WIDTH-Constants.PotionDetails.POTION_WIDTH), defYPos, 2));
             oGenCounter = 0;
         }
     }

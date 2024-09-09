@@ -3,10 +3,7 @@ package Entity;
 import Main.Game;
 import Main.GameStates;
 import Utilz.Constants;
-import Utilz.Data;
 import Utilz.LoadSave;
-import ui.shop.PinkstarSkin;
-import ui.shop.SharkSkin;
 import ui.shop.SkinToBuy;
 
 import java.awt.*;
@@ -23,7 +20,7 @@ public class Player extends Entity {
     private Direction imgDir; // in which direction should the graphic be drawn
 
     public Player(Game game) {
-        super(game, Type.player,  Game.WINDOW_WIDTH/2-CRABBY_WIDTH/2, 10*Game.TILE_SIZE, CRABBY_WIDTH, CRABBY_HEIGHT, 2.5f, 4, IDLE);
+        super(game, Type.player,  Game.WINDOW_WIDTH/2-CRABBY_WIDTH/2, 10*Game.TILE_SIZE, CRABBY_WIDTH, CRABBY_HEIGHT, 3, 4, IDLE); // 2.5f
         name = "Crabby";
 
         score = 0;
@@ -41,6 +38,7 @@ public class Player extends Entity {
 
     public void changeSkin(SkinToBuy skin) {
         name = skin.name;
+        posData.setXPos((Game.WINDOW_WIDTH-skin.width)/2);
         posData.setWidth(skin.width);
         posData.setHeight(skin.height);
         posData.setCollSpaces(skin.collLeftSpace, skin.collRightSpace, skin.collTopSpace, skin.collBottomSpace);
@@ -79,14 +77,16 @@ public class Player extends Entity {
             if (isAttacking) {
                 state = ATTACK;
             } else {
-                if (game.listeners.leftPressed) {
-                    imgDir = Direction.left;
-                    dir = Direction.left;
-                    state = RUNNING;
-                } else if (game.listeners.rightPressed) {
-                    imgDir = Direction.right;
-                    dir = Direction.right;
-                    state = RUNNING;
+                if ((game.listeners.leftPressed || game.listeners.rightPressed) && !(game.listeners.leftPressed && game.listeners.rightPressed)) {
+                    if (game.listeners.leftPressed) {
+                        imgDir = Direction.left;
+                        dir = Direction.left;
+                        state = RUNNING;
+                    } else if (game.listeners.rightPressed) {
+                        imgDir = Direction.right;
+                        dir = Direction.right;
+                        state = RUNNING;
+                    }
                 } else {
                     dir = Direction.idle;
                     state = IDLE;
@@ -184,9 +184,9 @@ public class Player extends Entity {
         state = IDLE;
         health = 4;
         maxHealth = health;
-        speed = 2.5f;
+        speed = 3;
         maxSpeed = speed;
-        posData.changeData(Game.WINDOW_WIDTH/2-Game.TILE_SIZE/2, 10*Game.TILE_SIZE, CRABBY_WIDTH, CRABBY_HEIGHT, collLeftSpace, collRightSpace, collTopSpace, collBottomSpace);
+        posData.changeData((Game.WINDOW_WIDTH-CRABBY_WIDTH)/2, 10*Game.TILE_SIZE, CRABBY_WIDTH, CRABBY_HEIGHT, collLeftSpace, collRightSpace, collTopSpace, collBottomSpace);
         loadImgs();
         animIndex = 0;
         animCounter = 0;

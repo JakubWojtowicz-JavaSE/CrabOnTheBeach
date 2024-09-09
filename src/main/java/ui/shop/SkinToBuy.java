@@ -82,12 +82,14 @@ public abstract class SkinToBuy extends UrmButton {
             g.setColor(new Color(0, 0, 0, 120));
             g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
         } else if (game.data.skinNum == game.ui.skins.indexOf(this)) {
-            g.setColor(new Color(25, 25, 255, 120));
-            g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+            Graphics2D g2 = (Graphics2D) g;
+            g.setColor(new Color(255, 255, 255));
+            g2.setStroke(new BasicStroke(2.3f*Game.SCALE));
+            g.drawRoundRect(bounds.x-(int) (1*Game.SCALE), bounds.y-(int) (1*Game.SCALE), bounds.width+(int) (1*Game.SCALE), bounds.height+(int) (1*Game.SCALE), (int) (4*Game.SCALE), (int) (4*Game.SCALE));
         }
 
         game.ui.setFontSize(12*Game.SCALE);
         g.setColor(Color.WHITE);
-        g.drawString("Price: " + price, bounds.x - (int) (5*Game.SCALE), bounds.y + bounds.height + (int) (10*Game.SCALE));
+        g.drawString("Price: " + price, bounds.x - (int) (5*Game.SCALE), bounds.y + bounds.height + (int) (11*Game.SCALE));
     }
 }

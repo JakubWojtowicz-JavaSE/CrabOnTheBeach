@@ -33,9 +33,9 @@ public class Listeners implements KeyListener, MouseListener, MouseMotionListene
                 game.changeGameState(GameStates.playing);
             else if (game.getGameState() == GameStates.options)
                 game.changeGameState(GameStates.menu);
-        } else if (/*code == KeyEvent.VK_B || */code == KeyEvent.VK_MULTIPLY) {
+        } /*else if (code == KeyEvent.VK_MULTIPLY) {
             debbugging = !debbugging;
-        }
+        }*/
     }
 
     @Override
