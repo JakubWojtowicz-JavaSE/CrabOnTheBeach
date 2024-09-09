@@ -21,11 +21,19 @@ public class AudioPlayer {
 
     public AudioPlayer(Game game) {
         this.game = game;
-        volume = game.data.volume;
 
         loadSongs();
         loadEffects();
+        setVar();
         playSong(game.random.nextInt(3)+0);
+    }
+
+    private void setVar() {
+        volume = game.data.volume;
+        if (!game.data.isMusicOn)
+            setSongMute(true);
+        if (!game.data.isSFXOn)
+            setEffectMute(true);
     }
 
     private void loadSongs() {
@@ -74,24 +82,6 @@ public class AudioPlayer {
 
     public void gameOver() {
         playEffect(GAME_OVER);// I add this method, when was 2 effects
-    }
-
-    public void setLevelSong(int lvlIndex) {
-//        if ((lvlIndex & 2) == 0)
-//            playSong(LEVEL_1);
-//        else
-//            playSong(LEVEL_2);
-    }
-
-    public void lvlCompleted() {
-        stopSong();
-//        playEffect(LVL_COMPLITED);
-    }
-
-    public void playAttackSound() {
-        int start = 4;
-        start += game.random.nextInt(3);
-        playEffect(start);
     }
 
     public void playEffect(int effect) {
