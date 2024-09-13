@@ -90,6 +90,13 @@ public abstract class SkinToBuy extends UrmButton {
 
         game.ui.setFontSize(12*Game.SCALE);
         g.setColor(Color.WHITE);
-        g.drawString("Price: " + price, bounds.x - (int) (5*Game.SCALE), bounds.y + bounds.height + (int) (11*Game.SCALE));
+        int toMinusX = -2 + ((String.valueOf(price).length()-1) * 3);
+
+//        if (price >= 10 && price < 100)
+//            toMinusX = 1;
+//        else if (price >= 100 && price < 1000)
+//            toMinusX = 4;
+
+        g.drawString("Price: " + price, bounds.x - (int) (toMinusX*Game.SCALE), bounds.y + bounds.height + (int) (11*Game.SCALE));
     }
 }

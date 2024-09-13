@@ -236,7 +236,8 @@ public class UI {
         drawBg();
         drawStr("SHOP", Game.WINDOW_WIDTH/2-(int) (25*Game.SCALE), (int) (70*Game.SCALE), 25*Game.SCALE);
         g.drawImage(LoadSave.GetSpriteAtlas(LoadSave.MONEY_SPRITE), Game.WINDOW_WIDTH-Constants.MoneyDetails.MONEY_WIDTH-(int) (1*Game.SCALE), (int) (1*Game.SCALE), Constants.MoneyDetails.MONEY_WIDTH, Constants.MoneyDetails.MONEY_HEIGHT, null);
-        drawStr(String.valueOf(game.player.budget), Game.WINDOW_WIDTH-Constants.MoneyDetails.MONEY_WIDTH-(int) (40f*Game.SCALE), (int) (21.5f*Game.SCALE), 25f*Game.SCALE);
+        int toMinusX = 20 + ((String.valueOf(game.player.budget).length()-1) * 12);
+        drawStr(String.valueOf(game.player.budget), Game.WINDOW_WIDTH-Constants.MoneyDetails.MONEY_WIDTH-(int) (toMinusX*Game.SCALE), (int) (21.5f*Game.SCALE), 25f*Game.SCALE);
 
         for (int i = 0; i < buttons[SHOP_STATE].length; i++) {
             if (buttons[SHOP_STATE][i] != null)

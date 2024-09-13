@@ -25,7 +25,7 @@ public class Player extends Entity {
 
         score = 0;
         bestScore = game.data.bestScore;
-        budget = game.data.budget;
+        budget = 100;
         skinIndex = game.data.skinNum;
 
         loadSkin(skinIndex);
