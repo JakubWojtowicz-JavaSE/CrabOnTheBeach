@@ -4,6 +4,7 @@ import Entity.Type;
 import Main.Game;
 import Main.GameStates;
 import Utilz.Constants;
+import Utilz.Data;
 import Utilz.LoadSave;
 import ui.menu.OptionsButton;
 import ui.menu.PlayButton;
@@ -20,7 +21,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class UI {
 
@@ -235,14 +240,17 @@ public class UI {
     private void drawShop() {
         drawBg();
         drawStr("SHOP", Game.WINDOW_WIDTH/2-(int) (25*Game.SCALE), (int) (70*Game.SCALE), 25*Game.SCALE);
-        g.drawImage(LoadSave.GetSpriteAtlas(LoadSave.MONEY_SPRITE), Game.WINDOW_WIDTH-Constants.MoneyDetails.MONEY_WIDTH-(int) (1*Game.SCALE), (int) (1*Game.SCALE), Constants.MoneyDetails.MONEY_WIDTH, Constants.MoneyDetails.MONEY_HEIGHT, null);
-        int toMinusX = 20 + ((String.valueOf(game.player.budget).length()-1) * 12);
-        drawStr(String.valueOf(game.player.budget), Game.WINDOW_WIDTH-Constants.MoneyDetails.MONEY_WIDTH-(int) (toMinusX*Game.SCALE), (int) (21.5f*Game.SCALE), 25f*Game.SCALE);
-
+        drawBudget();
         for (int i = 0; i < buttons[SHOP_STATE].length; i++) {
             if (buttons[SHOP_STATE][i] != null)
                 buttons[SHOP_STATE][i].draw(g);
         }
+    }
+
+    private void drawBudget() {
+        g.drawImage(LoadSave.GetSpriteAtlas(LoadSave.MONEY_SPRITE), Game.WINDOW_WIDTH-Constants.MoneyDetails.MONEY_WIDTH-(int) (1*Game.SCALE), (int) (1*Game.SCALE), Constants.MoneyDetails.MONEY_WIDTH, Constants.MoneyDetails.MONEY_HEIGHT, null);
+        int toMinusX = 20 + ((String.valueOf(game.player.budget).length()-1) * 12);
+        drawStr(String.valueOf(game.player.budget), Game.WINDOW_WIDTH-Constants.MoneyDetails.MONEY_WIDTH-(int) (toMinusX*Game.SCALE), (int) (21.5f*Game.SCALE), 25f*Game.SCALE);
     }
 
     private void drawPlaying() {
@@ -250,8 +258,23 @@ public class UI {
         game.player.draw(g);
         game.eSpawner.draw(g);
         drawHealthBar();
-        drawStr("SCORE: " + game.player.score, Game.WINDOW_WIDTH/2-(int) (40*Game.SCALE), (int) (68*Game.SCALE), 25*Game.SCALE);
-        drawStr("BUDGET: " + game.player.budget, Game.WINDOW_WIDTH/2-(int) (45*Game.SCALE), (int) (92*Game.SCALE), 25*Game.SCALE);
+        drawBudget();
+        System.out.println(System.currentTimeMillis() - game.player.startGameTime);
+        drawStr("TIME: " + formatToSec(System.currentTimeMillis() - game.player.startGameTime) , Game.WINDOW_WIDTH/2-(int) (40*Game.SCALE), (int) (68*Game.SCALE), 25*Game.SCALE);
+    }
+
+    public String formatToSec(long i) {
+        String str = String.valueOf(i);
+        int len = str.length();
+
+        if (len >= 2) {
+            StringBuilder stringBuilder = new StringBuilder(str);
+            stringBuilder.delete(len - 2, len);
+
+            return String.valueOf(stringBuilder);
+        } else {
+            return "";
+        }
     }
 
     private int hBarX = (int) (3*Game.SCALE);
@@ -299,7 +322,7 @@ public class UI {
     private void drawDeathScr() {
         darkenScreen();
         g.drawImage(deathScreenImg, deathSX, deathSY, Constants.DeathScreenDetails.DEATH_S_WIDTH, Constants.DeathScreenDetails.DEATH_S_HEIGHT, null);
-        drawStr("SCORE: " + game.player.score, deathSX+(int) (55*Game.SCALE), deathSY/2-(int) (5*Game.SCALE), 25*Game.SCALE);
+        drawStr("TIME: " + formatToSec(System.currentTimeMillis() - game.player.startGameTime), deathSX+(int) (55*Game.SCALE), deathSY/2-(int) (5*Game.SCALE), 25*Game.SCALE);
         drawStr("BEST SCORE: " + game.player.bestScore, deathSX+(int) (24*Game.SCALE), deathSY/2+(int) (25*Game.SCALE), 25*Game.SCALE);
 
         for (int i = 0; i < buttons[DEATH_S_STATE].length; i++) {

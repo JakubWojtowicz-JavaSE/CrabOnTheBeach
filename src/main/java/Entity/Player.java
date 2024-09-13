@@ -14,6 +14,7 @@ import static Utilz.Constants.CrabbyDetails.*;
 public class Player extends Entity {
 
     private boolean isDead;
+    public long startGameTime;
     public int score, bestScore, budget;
     private int skinIndex;
 
@@ -23,9 +24,10 @@ public class Player extends Entity {
         super(game, Type.player,  Game.WINDOW_WIDTH/2-CRABBY_WIDTH/2, 10*Game.TILE_SIZE, CRABBY_WIDTH, CRABBY_HEIGHT, 3, 4, IDLE); // 2.5f
         name = "Crabby";
 
+        startGameTime = System.currentTimeMillis();
         score = 0;
         bestScore = game.data.bestScore;
-        budget = 100;
+        budget = game.data.budget;
         skinIndex = game.data.skinNum;
 
         loadSkin(skinIndex);
@@ -176,6 +178,7 @@ public class Player extends Entity {
     }
 
     public void reset(boolean defSkin) {
+        startGameTime = System.currentTimeMillis();
         score = 0;
         bestScore = game.data.bestScore;
         isDead = false;
