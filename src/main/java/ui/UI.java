@@ -259,8 +259,7 @@ public class UI {
         game.eSpawner.draw(g);
         drawHealthBar();
         drawBudget();
-        System.out.println(System.currentTimeMillis() - game.player.startGameTime);
-        drawStr("TIME: " + formatToSec(System.currentTimeMillis() - game.player.startGameTime) , Game.WINDOW_WIDTH/2-(int) (40*Game.SCALE), (int) (68*Game.SCALE), 25*Game.SCALE);
+        drawStr("TIME: " + formatToSec(game.player.time) , Game.WINDOW_WIDTH/2-(int) (40*Game.SCALE), (int) (68*Game.SCALE), 25*Game.SCALE);
     }
 
     public String formatToSec(long i) {
@@ -270,8 +269,9 @@ public class UI {
         if (len >= 2) {
             StringBuilder stringBuilder = new StringBuilder(str);
             stringBuilder.delete(len - 2, len);
+            stringBuilder.insert(len-3, "."); // length was reduced by 2 on the line above, so I subtracted 1 + that value, not wanting to refresh the len var
 
-            return String.valueOf(stringBuilder);
+            return stringBuilder.toString();
         } else {
             return "";
         }
@@ -322,8 +322,8 @@ public class UI {
     private void drawDeathScr() {
         darkenScreen();
         g.drawImage(deathScreenImg, deathSX, deathSY, Constants.DeathScreenDetails.DEATH_S_WIDTH, Constants.DeathScreenDetails.DEATH_S_HEIGHT, null);
-        drawStr("TIME: " + formatToSec(System.currentTimeMillis() - game.player.startGameTime), deathSX+(int) (55*Game.SCALE), deathSY/2-(int) (5*Game.SCALE), 25*Game.SCALE);
-        drawStr("BEST SCORE: " + game.player.bestScore, deathSX+(int) (24*Game.SCALE), deathSY/2+(int) (25*Game.SCALE), 25*Game.SCALE);
+        drawStr("TIME: " + formatToSec(game.player.time), deathSX+(int) (55*Game.SCALE), deathSY/2-(int) (5*Game.SCALE), 25*Game.SCALE);
+        drawStr("BEST SCORE: " + formatToSec(game.player.bestTime), deathSX+(int) (24*Game.SCALE), deathSY/2+(int) (25*Game.SCALE), 25*Game.SCALE);
 
         for (int i = 0; i < buttons[DEATH_S_STATE].length; i++) {
             if (buttons[DEATH_S_STATE][i] != null)

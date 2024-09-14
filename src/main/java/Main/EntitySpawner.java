@@ -53,7 +53,6 @@ public class EntitySpawner {
             genCounter = 0;
 
             if (times >= maxTimes) {
-                game.player.score++;
                 game.player.heal(2);
                 maxTimes--;
                 genSpace -= 1;

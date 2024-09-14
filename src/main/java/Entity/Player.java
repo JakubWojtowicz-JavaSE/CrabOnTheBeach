@@ -15,7 +15,7 @@ public class Player extends Entity {
 
     private boolean isDead;
     public long startGameTime;
-    public int score, bestScore, budget;
+    public int time, bestTime, budget;
     private int skinIndex;
 
     private Direction imgDir; // in which direction should the graphic be drawn
@@ -24,9 +24,8 @@ public class Player extends Entity {
         super(game, Type.player,  Game.WINDOW_WIDTH/2-CRABBY_WIDTH/2, 10*Game.TILE_SIZE, CRABBY_WIDTH, CRABBY_HEIGHT, 3, 4, IDLE); // 2.5f
         name = "Crabby";
 
-        startGameTime = System.currentTimeMillis();
-        score = 0;
-        bestScore = game.data.bestScore;
+        startGameTime = 0;
+        bestTime = game.data.bestTime;
         budget = game.data.budget;
         skinIndex = game.data.skinNum;
 
@@ -145,14 +144,16 @@ public class Player extends Entity {
             if (animIndex >= Constants.GetHowMSprInRow(name, state)-1) {
                 game.changeGameState(GameStates.deathScreen);
             }
+        } else {
+            time = Math.toIntExact(System.currentTimeMillis() - startGameTime);
         }
         return isDead;
     }
 
     public boolean chcekChanges() {
         boolean toSave = false;
-        if (score > game.data.bestScore) {
-            game.data.bestScore = score;
+        if (time > game.data.bestTime) {
+            game.data.bestTime = time;
             toSave = true;
         }
         if (budget != game.data.budget) {
@@ -179,8 +180,8 @@ public class Player extends Entity {
 
     public void reset(boolean defSkin) {
         startGameTime = System.currentTimeMillis();
-        score = 0;
-        bestScore = game.data.bestScore;
+        time = 0;
+        bestTime = game.data.bestTime;
         isDead = false;
 
         dir = Direction.idle;
