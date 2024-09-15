@@ -10,6 +10,7 @@ public class Main {
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Game game = new Game();
+        game.openCredits(false);
         window.add(game);
         window.pack();
         window.setLocationRelativeTo(null);

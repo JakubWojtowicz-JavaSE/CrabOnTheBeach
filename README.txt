@@ -1,3 +1,5 @@
+Credits:
+
 Code: xccevgames@gmail.com
 Assets(no copyright):
 (money and shop imgs are mine) xccevgames@gmail.com

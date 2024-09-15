@@ -6,11 +6,11 @@ import Utilz.LoadSave;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static Utilz.Constants.BallDetails.*;
+import static Utilz.Constants.RockDetails.*;
 
-public class BallEnemy extends Entity {
+public class RockEnemy extends Entity {
 
-    public BallEnemy(Game game, int xPos, int yPos, int speed) {
+    public RockEnemy(Game game, int xPos, int yPos, int speed) {
         super(game, Type.bad_bullet, xPos, yPos, BALL_WIDTH, BALL_HEIGHT, speed, 1, RUNNING);
         name = "Ball";
         dir = Direction.fall;

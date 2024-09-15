@@ -8,6 +8,8 @@ import ui.UI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 public class Game extends JPanel implements Runnable {
@@ -64,6 +66,16 @@ public class Game extends JPanel implements Runnable {
     public void reset() {
         eSpawner.setDefVar();
         player.reset(false);
+    }
+
+    public void openCredits(boolean force) {
+        if (data.firstOpen || force) {
+            ProcessBuilder pb = new ProcessBuilder("Notepad.exe", "README.txt");
+            try {
+                pb.start();
+                data.firstOpen = false;
+            } catch (IOException e) {}
+        }
     }
 
     public void startGameThread() {

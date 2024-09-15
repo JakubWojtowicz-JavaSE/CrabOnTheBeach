@@ -16,6 +16,7 @@ public class LoadSave {
     public static final String OPTIONS_IMG = "ui/options_background.png";
     public static final String SOUND_B_IMG = "ui/buttons/sound_button.png";
     public static final String VOLUME_B_IMG = "ui/buttons/volume_buttons.png";
+    public static final String CREDITS_BUTTON_IMG = "ui/buttons/credits_button.png";
     public static final String SHOP_ICON_IMG = "ui/buttons/shop_icon.png";
     public static final String HEALTH_BAR_IMG = "ui/health_power_bar.png";
     public static final String PAUSE_MENU = "ui/pause_menu.png";
@@ -31,7 +32,7 @@ public class LoadSave {
     public static final String PINKSTAR_SKIN_ATLAS = "entitySprites/pinkstar_atlas.png";
     public static final String SHARK_SKIN_ATLAS = "entitySprites/shark_atlas.png";
 
-    public static final String path = System.getenv("APPDATA") + "/JakubWojtowicz/CrabGame";
+    public static final String path = System.getenv("APPDATA") + "/Xccev/LifeOnTheBeach";
     private static File pathF = new File(path);
     public static final String fileName = "/data.crb";
 

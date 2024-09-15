@@ -1,6 +1,6 @@
 package Main;
 
-import Entity.BallEnemy;
+import Entity.RockEnemy;
 import Entity.Potion;
 import Entity.Money;
 import Entity.Type;
@@ -48,7 +48,7 @@ public class EntitySpawner {
     private void genEnemies() {
         genCounter++;
         if (genCounter >= genSpace) {
-            enemies.add(new BallEnemy(game, game.random.nextInt(Game.WINDOW_WIDTH- Constants.BallDetails.BALL_WIDTH), defYPos, enemySpeed));
+            enemies.add(new RockEnemy(game, game.random.nextInt(Game.WINDOW_WIDTH- Constants.RockDetails.BALL_WIDTH), defYPos, enemySpeed));
             times++;
             genCounter = 0;
 

@@ -105,7 +105,7 @@ public class Constants {
         public static final int SPRITES_IN_DEAD = 5;
     }
 
-    public static class BallDetails {
+    public static class RockDetails {
         public static final int BALL_DEFAULT_WIDTH = 32;
         public static final int BALL_DEFAULT_HEIGHT = 32;
 

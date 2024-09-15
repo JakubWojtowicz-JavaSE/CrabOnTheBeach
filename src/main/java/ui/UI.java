@@ -6,6 +6,7 @@ import Main.GameStates;
 import Utilz.Constants;
 import Utilz.Data;
 import Utilz.LoadSave;
+import ui.menu.CreditsButton;
 import ui.menu.OptionsButton;
 import ui.menu.PlayButton;
 import ui.menu.QuitButton;
@@ -113,7 +114,8 @@ public class UI {
         buttons[MENU_STATE][0] = new PlayButton(game, menuX + (int) (36f*Game.SCALE), menuY + (int) (75*Game.SCALE));
         buttons[MENU_STATE][1] = new OptionsButton(game, menuX + (int) (36f*Game.SCALE), menuY + Constants.MenuButtonsDetails.BUTTON_HEIGHT + (int) (85*Game.SCALE));
         buttons[MENU_STATE][2] = new QuitButton(game, menuX + (int) (36f*Game.SCALE), menuY + 2* Constants.MenuButtonsDetails.BUTTON_HEIGHT + (int) (95*Game.SCALE));
-        buttons[MENU_STATE][3] = new ShopButton(game, (int) (225f*Game.SCALE), (int) (300f*Game.SCALE));
+        buttons[MENU_STATE][3] = new CreditsButton(game, (int) (5f*Game.SCALE), Game.WINDOW_HEIGHT - ((int) (5f*Game.SCALE) + Constants.OptionsButtonsDetails.NAVIGATE_BUTTON_HEIGHT));
+        buttons[MENU_STATE][4] = new ShopButton(game, (int) (225f*Game.SCALE), (int) (300f*Game.SCALE));
 
         buttons[OPTIONS_STATE][0] = new SoundButton(game, menuX + (int) (119f*Game.SCALE), menuY + (int) (72f*Game.SCALE), Type.music);
         buttons[OPTIONS_STATE][1] = new SoundButton(game, menuX + (int) (119f*Game.SCALE), menuY + (int) (105f*Game.SCALE), Type.sfx);
@@ -323,7 +325,7 @@ public class UI {
         darkenScreen();
         g.drawImage(deathScreenImg, deathSX, deathSY, Constants.DeathScreenDetails.DEATH_S_WIDTH, Constants.DeathScreenDetails.DEATH_S_HEIGHT, null);
         drawStr("TIME: " + formatToSec(game.player.time), deathSX+(int) (55*Game.SCALE), deathSY/2-(int) (5*Game.SCALE), 25*Game.SCALE);
-        drawStr("BEST SCORE: " + formatToSec(game.player.bestTime), deathSX+(int) (24*Game.SCALE), deathSY/2+(int) (25*Game.SCALE), 25*Game.SCALE);
+        drawStr("BEST TIME: " + formatToSec(game.player.bestTime), deathSX+(int) (24*Game.SCALE), deathSY/2+(int) (25*Game.SCALE), 25*Game.SCALE);
 
         for (int i = 0; i < buttons[DEATH_S_STATE].length; i++) {
             if (buttons[DEATH_S_STATE][i] != null)
