@@ -5,6 +5,30 @@ import Main.Game;
 
 public class Constants {
 
+    public static final String CREDITS =
+                    "Code: xccevgames@gmail.com\n\n" +
+
+                    "Assets(no copyright):\n" +
+                    "   (money and shop imgs are mine) \n" +
+                            "           xccevgames@gmail.com\n" +
+                    "   hipixelfrog@gmail.com\n" +
+                    "   https://pixelfrog-assets.itch.io/\n\n" +
+
+                    "Font(no copyright):\n" +
+                    "   https://fontsgeek.com/00249-font\n\n" +
+
+                    "Music(no copyright, while \n" +
+                            "       don't redistribute as your own :) ):\n" +
+                    "   jhaeka\n" +
+                    "   Website: \n" +
+                            "           https://joshuuu.itch.io/\n" +
+                    "   Shononoki\n" +
+                    "   Website: \n" +
+                            "        https://shononoki.itch.io/rpg-music-pack-svl\n" +
+                    "\n" +
+                    "date: 28/08/2024";
+
+
     public static int GetHowMSprInRow(String name, int state) {
         switch (name) {
             case "Crabby" -> {

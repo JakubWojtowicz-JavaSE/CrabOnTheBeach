@@ -4,7 +4,6 @@ import Entity.Type;
 import Main.Game;
 import Main.GameStates;
 import Utilz.Constants;
-import Utilz.Data;
 import Utilz.LoadSave;
 import ui.menu.CreditsButton;
 import ui.menu.OptionsButton;
@@ -20,25 +19,21 @@ import ui.shop.*;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.Format;
-import java.text.SimpleDateFormat;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UI {
 
     private Game game;
     private Graphics g;
-    private Font font;
+    private Font font, fontCalibri;
     private UrmButton[][] buttons;
     private int MENU_STATE = 0;
     private int OPTIONS_STATE = 1;
     private int SHOP_STATE = 2;
-    private int PAUSE_STATE = 3;
-    private int DEATH_S_STATE = 4;
+    private int CREDITS_STATE = 3;
+    private int PAUSE_STATE = 4;
+    private int DEATH_S_STATE = 5;
     private Image backgroundImg;
     private Image optionsImg;
     private Image menuImg;
@@ -63,6 +58,7 @@ public class UI {
         try {
             InputStream is = getClass().getResourceAsStream("/ui/Font.ttf");
             font = Font.createFont(Font.TRUETYPE_FONT, is);
+            fontCalibri = new Font("Calibri", Font.PLAIN, 10);
             is.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -109,7 +105,7 @@ public class UI {
     }
 
     private void createButtons() {
-        buttons = new UrmButton[5][6];
+        buttons = new UrmButton[6][6];
 
         buttons[MENU_STATE][0] = new PlayButton(game, menuX + (int) (36f*Game.SCALE), menuY + (int) (75*Game.SCALE));
         buttons[MENU_STATE][1] = new OptionsButton(game, menuX + (int) (36f*Game.SCALE), menuY + Constants.MenuButtonsDetails.BUTTON_HEIGHT + (int) (85*Game.SCALE));
@@ -127,6 +123,8 @@ public class UI {
         buttons[SHOP_STATE][1] = skins.get(1);
         buttons[SHOP_STATE][2] = new DefaultSkin(game, menuX + (int) (20f*Game.SCALE), menuY + (int) (250f*Game.SCALE));
         buttons[SHOP_STATE][3] = new HomeButton(game, menuX + (int) (77.5f*Game.SCALE), menuY + (int) (250f*Game.SCALE));
+
+        buttons[CREDITS_STATE][0] = new HomeButton(game, menuX + (int) (77.5f*Game.SCALE), menuY + (int) (250f*Game.SCALE));
 
         buttons[PAUSE_STATE][0] = new SoundButton(game, menuX + (int) (119f*Game.SCALE), menuY + (int) (79.5f*Game.SCALE), Type.music);
         buttons[PAUSE_STATE][1] = new SoundButton(game, menuX + (int) (119f*Game.SCALE), menuY + (int) (112.5f*Game.SCALE), Type.sfx);
@@ -154,6 +152,11 @@ public class UI {
             for (int i = 0; i < buttons[SHOP_STATE].length; i++) {
                 if (buttons[SHOP_STATE][i] != null)
                     buttons[SHOP_STATE][i].update();
+            }
+        } else if (game.getGameState() == GameStates.credits) {
+            for (int i = 0; i < buttons[CREDITS_STATE].length; i++) {
+                if (buttons[CREDITS_STATE][i] != null)
+                    buttons[CREDITS_STATE][i].update();
             }
         } else if (game.getGameState() == GameStates.pause) {
             for (int i = 0; i < buttons[PAUSE_STATE].length; i++) {
@@ -201,6 +204,8 @@ public class UI {
             drawOptions();
         } else if (game.getGameState() == GameStates.shop) {
             drawShop();
+        } else if (game.getGameState() == GameStates.credits) {
+            drawCredits();
         } else if (game.getGameState() == GameStates.playing) {
             drawPlaying();
         } else if (game.getGameState() == GameStates.pause) {
@@ -246,6 +251,26 @@ public class UI {
         for (int i = 0; i < buttons[SHOP_STATE].length; i++) {
             if (buttons[SHOP_STATE][i] != null)
                 buttons[SHOP_STATE][i].draw(g);
+        }
+    }
+
+    private void drawCredits() {
+        drawBg();
+        drawStr("CREDITS", Game.WINDOW_WIDTH/2-(int) (40f*Game.SCALE), (int) (34f*Game.SCALE), 25*Game.SCALE);
+        drawCreditsText();
+
+        for (int i = 0; i < buttons[CREDITS_STATE].length; i++) {
+            if (buttons[CREDITS_STATE][i] != null)
+                buttons[CREDITS_STATE][i].draw(g);
+        }
+    }
+
+    private void drawCreditsText() {
+        int y = (int) (54f*Game.SCALE);
+        g.setFont(fontCalibri.deriveFont(15f));
+        for (String line : Constants.CREDITS.split("\n")) {
+            g.drawString(line, (int) (57f*Game.SCALE), y);
+            y += 12.2f*Game.SCALE;
         }
     }
 
@@ -355,6 +380,11 @@ public class UI {
                 if (buttons[SHOP_STATE][i] != null)
                     buttons[SHOP_STATE][i].mousePressed(e);
             }
+        } else if (game.getGameState() == GameStates.credits) {
+            for (int i = 0; i < buttons[CREDITS_STATE].length; i++) {
+                if (buttons[CREDITS_STATE][i] != null)
+                    buttons[CREDITS_STATE][i].mousePressed(e);
+            }
         } else if (game.getGameState() == GameStates.pause) {
             for (int i = 0; i < buttons[PAUSE_STATE].length; i++) {
                 if (buttons[PAUSE_STATE][i] != null)
@@ -383,6 +413,11 @@ public class UI {
             for (int i = 0; i < buttons[SHOP_STATE].length; i++) {
                 if (buttons[SHOP_STATE][i] != null)
                     buttons[SHOP_STATE][i].mouseRelased(e);
+            }
+        } else if (game.getGameState() == GameStates.credits) {
+            for (int i = 0; i < buttons[CREDITS_STATE].length; i++) {
+                if (buttons[CREDITS_STATE][i] != null)
+                    buttons[CREDITS_STATE][i].mouseRelased(e);
             }
         } else if (game.getGameState() == GameStates.pause) {
             for (int i = 0; i < buttons[PAUSE_STATE].length; i++) {
@@ -426,6 +461,11 @@ public class UI {
             for (int i = 0; i < buttons[SHOP_STATE].length; i++) {
                 if (buttons[SHOP_STATE][i] != null)
                     buttons[SHOP_STATE][i].mouseMoved(e);
+            }
+        } else if (game.getGameState() == GameStates.credits) {
+            for (int i = 0; i < buttons[CREDITS_STATE].length; i++) {
+                if (buttons[CREDITS_STATE][i] != null)
+                    buttons[CREDITS_STATE][i].mouseDragged(e);
             }
         } else if (game.getGameState() == GameStates.pause) {
             for (int i = 0; i < buttons[PAUSE_STATE].length; i++) {

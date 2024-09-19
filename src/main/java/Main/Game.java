@@ -70,11 +70,8 @@ public class Game extends JPanel implements Runnable {
 
     public void openCredits(boolean force) {
         if (data.firstOpen || force) {
-            ProcessBuilder pb = new ProcessBuilder("Notepad.exe", "README.txt");
-            try {
-                pb.start();
-                data.firstOpen = false;
-            } catch (IOException e) {}
+            changeGameState(GameStates.credits);
+            data.firstOpen = false;
         }
     }
 
