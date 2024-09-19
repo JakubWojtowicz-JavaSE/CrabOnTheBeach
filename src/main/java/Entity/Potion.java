@@ -45,7 +45,6 @@ public class Potion extends Entity {
         if (entityType == Type.potion_g) {
             if (dieCounter == 0) {
                 state = ATTACK;
-                game.player.setMaxHealth(game.player.getMaxHealth()+1);;
                 game.player.heal(1);
                 game.player.setMaxSpeed(game.player.getMaxSpeed()+1);
                 game.player.increaseSpeed(1);

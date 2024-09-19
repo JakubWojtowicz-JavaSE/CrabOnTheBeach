@@ -102,8 +102,6 @@ public abstract class Entity {
 
     public void increaseSpeed(int i) {
         speed += i;
-        if (speed > maxSpeed)
-            speed = maxSpeed;
     }
 
     public void draw(Graphics g) {
@@ -156,6 +154,8 @@ public abstract class Entity {
 
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
+        if (maxSpeed > 4)
+            maxSpeed = 4; // limit
     }
 
     public Rectangle getCollider() {
