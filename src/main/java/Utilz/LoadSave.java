@@ -1,6 +1,7 @@
 package Utilz;
 
 import Entity.Direction;
+import Main.Main;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -32,7 +33,7 @@ public class LoadSave {
     public static final String PINKSTAR_SKIN_ATLAS = "entitySprites/pinkstar_atlas.png";
     public static final String SHARK_SKIN_ATLAS = "entitySprites/shark_atlas.png";
 
-    public static final String path = System.getenv("APPDATA") + "/Xccev/LifeOnTheBeach";
+    public static final String path = System.getenv("APPDATA") + "/Xccev/" + Main.GAME_NAME;
     private static File pathF = new File(path);
     public static final String fileName = "/data.crb";
 

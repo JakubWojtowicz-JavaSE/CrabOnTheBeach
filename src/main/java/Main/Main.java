@@ -4,9 +4,11 @@ import javax.swing.*;
 
 public class Main {
 
+    public static final String GAME_NAME = "LifeOnTheBeach";
+
     public static void main(String[] args) {
         JFrame window = new JFrame();
-        window.setTitle("Crab Game");
+        window.setTitle(GAME_NAME);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Game game = new Game();
