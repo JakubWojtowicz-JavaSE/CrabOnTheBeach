@@ -1,6 +1,7 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/Publish_res
 *.iml
 *.crb
 .idea/
