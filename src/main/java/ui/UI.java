@@ -267,6 +267,7 @@ public class UI {
 
     private void drawCreditsText() {
         int y = (int) (54f*Game.SCALE);
+        g.setColor(Color.BLACK);
         g.setFont(fontCalibri.deriveFont(15f));
         for (String line : Constants.CREDITS.split("\n")) {
             g.drawString(line, (int) (57f*Game.SCALE), y);

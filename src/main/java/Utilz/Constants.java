@@ -9,7 +9,7 @@ public class Constants {
                     "Code: xccevgames@gmail.com\n\n" +
 
                     "Assets(no copyright):\n" +
-                    "   (money and shop imgs are mine) \n" +
+                    "   (money, shop and credits imgs are mine) \n" +
                             "           xccevgames@gmail.com\n" +
                     "   hipixelfrog@gmail.com\n" +
                     "   https://pixelfrog-assets.itch.io/\n\n" +
